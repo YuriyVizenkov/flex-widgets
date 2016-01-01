@@ -1,0 +1,25 @@
+{
+  "name": "greg/flex-widgets",
+  "minimum-stability": "dev",
+  "require": {
+  },
+  "require-dev": {
+    "mockery/mockery": "dev-master",
+    "phpunit/phpunit": "~4.7"
+  },
+  "autoload": {
+    "classmap": [
+    ],
+    "psr-4": {
+      "flex\\": ""
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "flex\\tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "./vendor/bin/phpunit -c ./phpunit.xml"
+  }
+}
