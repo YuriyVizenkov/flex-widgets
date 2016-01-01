@@ -2,8 +2,11 @@
 
 namespace flex\components;
 
+use flex\components\builders\BuilderManager;
 use flex\components\exceptions\NotDefinedPropertyException;
 use flex\components\exceptions\NotImplementInterfaceException;
+use flex\components\exceptions\ViewNotFoundException;
+use flex\components\interfaces\IClientManager;
 use flex\components\interfaces\IWidget;
 use flex\components\traits\UIDGenerator;
 
@@ -15,6 +18,16 @@ use flex\components\traits\UIDGenerator;
 abstract class FlexWidget implements IWidget
 {
     use UIDGenerator;
+
+    /**
+     * @var IClientManager
+     */
+    protected static $clientManager = false;
+
+    /**
+     * @var string
+     */
+    protected static $basePathView = false;
 
     /**
      * @var string
@@ -39,6 +52,15 @@ abstract class FlexWidget implements IWidget
     public function __construct()
     {
         $this->uid = $this->genUuid();
+        if (self::$clientManager === false) {
+            self::setClientManager((new BuilderManager())->getClientManager());
+        }
+        if (self::$basePathView === false) {
+            self::$basePathView = __DIR__ . '/../views/';
+        }
+
+        $this->getClientManager()->registerCoreJS();
+
         $this->init();
     }
 
@@ -48,6 +70,22 @@ abstract class FlexWidget implements IWidget
     public function init()
     {
 
+    }
+
+    /**
+     * @param IClientManager $clientManager
+     */
+    public static function setClientManager(IClientManager $clientManager)
+    {
+        self::$clientManager = $clientManager;
+    }
+
+    /**
+     * @return IClientManager
+     */
+    public function getClientManager()
+    {
+        return self::$clientManager;
     }
 
     /**
@@ -151,10 +189,25 @@ abstract class FlexWidget implements IWidget
      * @param array $params
      * @param bool $isGetBuffer
      * @return string|void
+     * @throws ViewNotFoundException
      */
     public function render($view, array $params = [], $isGetBuffer = false)
     {
-        return '';
+        $tpl = self::$basePathView . $view . '.php';
+        if (!file_exists($tpl)) {
+            throw new ViewNotFoundException('View `' . $tpl . '`widget not exists ');
+        }
+
+        ob_start();
+        extract($params);
+        include $tpl;
+        $content = ob_get_clean();
+
+        if ($isGetBuffer === true) {
+            return $content;
+        } else {
+            echo $content;
+        }
     }
 
     /**
