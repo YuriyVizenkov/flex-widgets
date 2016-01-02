@@ -37,6 +37,20 @@ class ClientManager implements IClientManager
     protected static $packageCSS = array();
 
     /**
+     * @var array
+     */
+    protected $coreScripts = [
+        'css' => [
+            '/src/assets/css/bootstrap.3.3.6.min',
+            '/src/assets/css/bootstrap-theme.3.3.6.min'
+        ],
+        'js' => [
+            '/src/assets/js/jquery.1.11.3.min',
+            '/src/assets/js/bootstrap.3.3.6.min'
+        ]
+    ];
+
+    /**
      * @param bool|string $baseUrl
      */
     public function __construct($baseUrl = false)
@@ -51,6 +65,10 @@ class ClientManager implements IClientManager
      */
     public function registerCore(array $scripts = [])
     {
+        if (empty($scripts)) {
+            $scripts = $this->coreScripts;
+        }
+
         foreach ($scripts as $type => $s)
         {
             if (is_array($s)) {
