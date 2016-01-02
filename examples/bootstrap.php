@@ -18,7 +18,7 @@ function render($title, $content, \flex\components\interfaces\IClientManager $cl
 
 require_once(__DIR__ . '/../vendor/autoload.php');
 
-$clM = new \flex\components\ClientManager();
-$clM->registerCore();
+$clientManager = new \flex\components\ClientManager();
+$clientManager->registerCore();
 
-\flex\components\FlexWidget::setClientManager($clM);
+\flex\components\FlexWidget::setClientManager($clientManager);
