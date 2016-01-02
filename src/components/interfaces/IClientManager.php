@@ -9,9 +9,9 @@ namespace flex\components\interfaces;
 interface IClientManager
 {
     /**
-     * @return void
+     * @param array $scripts
      */
-    public function registerCoreJS();
+    public function registerCore(array $scripts = []);
 
     /**
      * @param string $file

@@ -22,7 +22,7 @@ abstract class FlexWidget implements IWidget
     /**
      * @var IClientManager
      */
-    protected static $clientManager = false;
+    public static $clientManager = false;
 
     /**
      * @var string
@@ -58,8 +58,6 @@ abstract class FlexWidget implements IWidget
         if (self::$basePathView === false) {
             self::$basePathView = __DIR__ . '/../views/';
         }
-
-        $this->getClientManager()->registerCoreJS();
 
         $this->init();
     }

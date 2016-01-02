@@ -6,6 +6,10 @@
  * @package examples
  */
 
+use flex\widgets\GridWidget;
+
 require_once(__DIR__.'/bootstrap.php');
 
-echo \flex\widgets\GridWidget::widget([]);
+$content = GridWidget::widget([]);
+
+render('Example of Bootstrap 3 Tables with Borders', $content, GridWidget::$clientManager);

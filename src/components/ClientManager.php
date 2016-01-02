@@ -47,11 +47,22 @@ class ClientManager implements IClientManager
     }
 
     /**
-     * @return void
+     * @param array $scripts
      */
-    public function registerCoreJS()
+    public function registerCore(array $scripts = [])
     {
-
+        foreach ($scripts as $type => $s)
+        {
+            if (is_array($s)) {
+                foreach ($s as $url) {
+                    if ($type === 'css') {
+                        $this->registerCSS($url);
+                    } elseif ($type === 'js') {
+                        $this->registerJS($url);
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -118,7 +129,7 @@ class ClientManager implements IClientManager
     {
         $result = '';
         foreach (self::$packageJS as $file => $script) {
-            $result .= $script;
+            $result .= $script . "\r\n";
         }
 
         echo $result;
@@ -131,7 +142,7 @@ class ClientManager implements IClientManager
     {
         $result = '';
         foreach (self::$packageCSS as $file => $css) {
-            $result .= $css;
+            $result .= $css . "\r\n";
         }
 
         echo $result;

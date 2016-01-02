@@ -12,6 +12,6 @@ class GridWidget extends FlexWidget
 {
     public function run()
     {
-
+        $this->render('grid');
     }
 }
