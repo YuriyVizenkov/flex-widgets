@@ -3,7 +3,7 @@
 namespace flex\components;
 
 use flex\components\collection\Actions;
-use flex\components\elements\Action;
+use flex\components\interfaces\IAction;
 
 /**
  * Class ActiveWidget
@@ -25,7 +25,7 @@ abstract class ActiveWidget extends FlexWidget
     }
 
     /**
-     * @return Action[]
+     * @return IAction[]
      */
     public function getActions()
     {

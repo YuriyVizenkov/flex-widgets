@@ -4,8 +4,9 @@ namespace flex\components\collection;
 
 use flex\components\builders\ActionBuilder;
 use flex\components\elements\Action;
+use flex\components\interfaces\IActions;
 
-class Actions implements \Countable
+class Actions implements IActions
 {
     /**
      * @var array
@@ -18,6 +19,11 @@ class Actions implements \Countable
     protected $baseUrl = '';
 
     /**
+     * @var string
+     */
+    protected $imageUrl = '';
+
+    /**
      * @var Action[]
      */
     protected $actions = [];
@@ -25,11 +31,13 @@ class Actions implements \Countable
     /**
      * @param array $types
      * @param string $baseUrl
+     * @param string $imageUrl
      */
-    public function __construct(array $types = [], $baseUrl = '')
+    public function __construct(array $types = [], $baseUrl = '', $imageUrl = '')
     {
         $this->actionsTypes = $types;
         $this->baseUrl = $baseUrl;
+        $this->imageUrl = $imageUrl;
 
         $this->init();
     }
@@ -38,7 +46,7 @@ class Actions implements \Countable
     {
         $builderAction = new ActionBuilder();
         foreach ($this->actionsTypes as $actionType) {
-            $this->actions[] = $builderAction->getAction($actionType, $this->baseUrl);
+            $this->actions[] = $builderAction->getAction($actionType, $this->baseUrl, $this->imageUrl);
         }
     }
 
@@ -51,10 +59,10 @@ class Actions implements \Countable
     }
 
     /**
-     * @return bool
+     * @return int
      */
     public function count()
     {
-        return count($this->actionsTypes) > 0;
+        return count($this->actionsTypes);
     }
 }

@@ -2,13 +2,14 @@
 
 namespace flex\components\elements;
 
+use flex\components\interfaces\IAction;
 use flex\components\SetPropertiesBehavior;
 
 /**
  * Class Action
  * @package flex\components\elements
  */
-class Action
+class Action implements IAction
 {
     use SetPropertiesBehavior;
 

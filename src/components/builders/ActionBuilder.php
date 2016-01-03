@@ -13,16 +13,17 @@ class ActionBuilder
     /**
      * @param string $type
      * @param string $baseUrl
+     * @param string $imageUrl
      * @return Action
      */
-    public function getAction($type, $baseUrl)
+    public function getAction($type, $baseUrl, $imageUrl)
     {
 
         return new Action(
             [
                 'type' => $type,
                 'url' => $this->getUrl($type, $baseUrl),
-                'image' => $this->getImage($type),
+                'image' => $this->getImage($type, $imageUrl),
                 'name' => $type
             ]
         );
@@ -40,10 +41,11 @@ class ActionBuilder
 
     /**
      * @param string $type
+     * @param string $imageUrl
      * @return string
      */
-    protected function getImage($type)
+    protected function getImage($type, $imageUrl)
     {
-        return '/assets/images/' . $type . '.png';
+        return ($imageUrl) ? $imageUrl . $type . '.png' : '/assets/images/' . $type . '.png';
     }
 }

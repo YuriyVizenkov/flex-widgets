@@ -2,8 +2,8 @@
 
 namespace flex\widgets;
 
-use flex\components\ActiveColumn;
 use flex\components\ActiveWidget;
+use flex\components\elements\ActiveColumn;
 use flex\components\interfaces\IElement;
 
 /**

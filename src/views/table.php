@@ -5,7 +5,7 @@
  * @var $list IElement[]
  */
 
-use flex\components\elements\Action;
+use flex\components\interfaces\IAction;
 use flex\components\interfaces\IElement;
 ?>
 <table class="table">
@@ -42,7 +42,7 @@ use flex\components\interfaces\IElement;
             <?php if ($this->hasActions()) :  ?>
                 <td>
                     <?php
-                    /* @var $action Action */
+                    /* @var $action IAction */
                     foreach ($this->getActions() as $action) : ?>
                         <a href="<?= $action->getUrl(); ?>"><img src="<?= $action->getImage(); ?>"></a>
                     <?php endforeach; ?>
