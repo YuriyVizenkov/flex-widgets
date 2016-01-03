@@ -53,10 +53,23 @@ $content = TableWidget::widget(
     [
         'list' => [$one, $two, $three, $four, $five],
         'columns' => [
-            new ActiveColumn(['title' => 'Row', 'call' => 'row']),
+            new ActiveColumn([
+                'title' => 'Row',
+                'call' => 'row',
+                'htmlOptions' => [
+                    'class' => 'class_class ascfsdsa',
+                    'width' => '5%',
+                ]
+            ]),
             new ActiveColumn(['title' => 'Bill', 'call' => 'bill']),
             new ActiveColumn(['title' => 'Payment Date', 'call' => 'payment_date']),
             new ActiveColumn(['title' => 'Payment Status', 'call' => 'payment_status']),
+        ],
+        'htmlOptions' => [
+            'class' => 'class_row'
+        ],
+        'tableHtmlOptions' => [
+            'class' => 'table_class',
         ],
         'actions' => new Actions([Action::DELETE, Action::EDIT, Action::VIEW])
     ]

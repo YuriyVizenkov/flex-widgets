@@ -22,6 +22,11 @@ class ActiveColumn
      */
     protected $call = '';
 
+    /**
+     * @var array
+     */
+    protected $htmlOptions = [];
+
     public function __construct(array $properties)
     {
         $this->setProperties($properties);
@@ -32,7 +37,7 @@ class ActiveColumn
      */
     public function getTitle()
     {
-        return $this->title;
+        return ($this->title) ? $this->title : $this->getCall();
     }
 
     /**
@@ -43,11 +48,36 @@ class ActiveColumn
         return $this->call;
     }
 
+    public function getClasses()
+    {
+        return ($this->hasClasses()) ? 'class="' . $this->htmlOptions['class'] . '"' : '';
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasClasses()
+    {
+        return isset($this->htmlOptions['class']);
+    }
+
+    /**
+     * @return string
+     */
+    public function getHtmlOptionsAsString()
+    {
+        $out = '';
+        foreach ($this->htmlOptions as $option => $value) {
+            $out .= $option . '="' . $value . '"';
+        }
+        return $out;
+    }
+
     /**
      * @return string
      */
     public function __toString()
     {
-        return $this->title;
+        return $this->getTitle();
     }
 }

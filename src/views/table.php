@@ -5,15 +5,18 @@
  * @var $list IElement[]
  */
 
+use flex\components\elements\ActiveColumn;
 use flex\components\interfaces\IAction;
 use flex\components\interfaces\IElement;
 ?>
-<table class="table">
+<table class="table <?= $this->getTableClasses(); ?>" <?= $this->getTableHtmlOptionsAsString(); ?>>
 
     <thead>
         <tr>
-            <?php foreach ($columns as $column) : ?>
-                <th><?= $column; ?></th>
+            <?php
+            /* @var $column ActiveColumn */
+            foreach ($columns as $column) : ?>
+                <th <?= $column->getHtmlOptionsAsString(); ?>><?= $column; ?></th>
             <?php endforeach; ?>
 
             <?php if ($this->hasActions()) :  ?>
@@ -29,14 +32,14 @@ use flex\components\interfaces\IElement;
             throw new \flex\components\exceptions\NotImplementInterfaceException('Element must by `IElement` implement interface');
         }
         ?>
-        <tr class="<?= $item->getElementType(); ?>">
+        <tr class="<?= $item->getElementType(); ?> <?= $this->getRowClasses(); ?>" <?= $this->getHtmlOptionsAsString(); ?>>
             <?php foreach ($columns as $column) :
                 $call = $column;
                 if ($column instanceof \flex\components\elements\ActiveColumn) {
                     $call = $column->getCall();
                 }
                 ?>
-                <td><?= $item->$call; ?></td>
+                <td <?= $column->getHtmlOptionsAsString(); ?>><?= $item->$call; ?></td>
             <?php endforeach; ?>
 
             <?php if ($this->hasActions()) :  ?>
