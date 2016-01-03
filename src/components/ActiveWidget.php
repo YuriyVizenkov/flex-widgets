@@ -21,7 +21,7 @@ abstract class ActiveWidget extends FlexWidget
      */
     public function hasActions()
     {
-        return $this->actions === false || ($this->actions instanceof Actions && count($this->actions) > 0);
+        return ($this->actions instanceof Actions && count($this->actions) > 0);
     }
 
     /**

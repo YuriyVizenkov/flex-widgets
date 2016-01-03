@@ -58,7 +58,7 @@ $content = TableWidget::widget(
             new ActiveColumn(['title' => 'Payment Date', 'call' => 'payment_date']),
             new ActiveColumn(['title' => 'Payment Status', 'call' => 'payment_status']),
         ],
-        'actions' => new Actions([Action::DELETE, Action::EDIT, Action::VIEW], '/')
+        'actions' => new Actions([Action::DELETE, Action::EDIT, Action::VIEW])
     ]
 );
 

@@ -35,7 +35,7 @@ class ActionBuilder
      */
     protected function getUrl($type, $baseUrl)
     {
-        return $baseUrl . '/' . $type;
+        return $type;
     }
 
     /**

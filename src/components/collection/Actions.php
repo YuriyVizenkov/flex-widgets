@@ -26,7 +26,7 @@ class Actions implements \Countable
      * @param array $types
      * @param string $baseUrl
      */
-    public function __construct(array $types = [], $baseUrl)
+    public function __construct(array $types = [], $baseUrl = '')
     {
         $this->actionsTypes = $types;
         $this->baseUrl = $baseUrl;
