@@ -2,14 +2,15 @@
 
 namespace flex\widgets;
 
-use flex\components\FlexWidget;
+use flex\components\ActiveColumn;
+use flex\components\ActiveWidget;
 use flex\components\interfaces\IElement;
 
 /**
  * Class TableWidget
  * @package flex\widgets
  */
-class TableWidget extends FlexWidget
+class TableWidget extends ActiveWidget
 {
     /**
      * @var IElement[]
@@ -17,7 +18,7 @@ class TableWidget extends FlexWidget
     public $list = [];
 
     /**
-     * @var array
+     * @var ActiveColumn[]
      */
     public $columns = [];
 

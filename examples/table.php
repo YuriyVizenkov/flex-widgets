@@ -6,7 +6,9 @@
  * @package examples
  */
 
-use flex\components\ActiveColumn;
+use flex\components\collection\Actions;
+use flex\components\elements\Action;
+use flex\components\elements\ActiveColumn;
 use flex\components\enums\TypeElementEnum;
 use flex\widgets\TableWidget;
 
@@ -49,13 +51,14 @@ $five->type = TypeElementEnum::DANGER;
 
 $content = TableWidget::widget(
     [
+        'list' => [$one, $two, $three, $four, $five],
         'columns' => [
             new ActiveColumn(['title' => 'Row', 'call' => 'row']),
             new ActiveColumn(['title' => 'Bill', 'call' => 'bill']),
             new ActiveColumn(['title' => 'Payment Date', 'call' => 'payment_date']),
             new ActiveColumn(['title' => 'Payment Status', 'call' => 'payment_status']),
         ],
-        'list' => [$one, $two, $three, $four, $five]
+        'actions' => new Actions([Action::DELETE, Action::EDIT, Action::VIEW], '/')
     ]
 );
 

@@ -41,12 +41,12 @@ class ClientManager implements IClientManager
      */
     protected $coreScripts = [
         'css' => [
-            '/src/assets/css/bootstrap.3.3.6.min',
+            '/assets/css/bootstrap.3.3.6.min',
             '/src/assets/css/bootstrap-theme.3.3.6.min'
         ],
         'js' => [
-            '/src/assets/js/jquery.1.11.3.min',
-            '/src/assets/js/bootstrap.3.3.6.min'
+            '/assets/js/jquery.1.11.3.min',
+            '/assets/js/bootstrap.3.3.6.min'
         ]
     ];
 

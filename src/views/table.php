@@ -1,9 +1,11 @@
 <?php
 /**
+ * @var $this \flex\widgets\TableWidget
  * @var $columns array
  * @var $list IElement[]
  */
 
+use flex\components\elements\Action;
 use flex\components\interfaces\IElement;
 ?>
 <table class="table">
@@ -13,6 +15,10 @@ use flex\components\interfaces\IElement;
             <?php foreach ($columns as $column) : ?>
                 <th><?= $column; ?></th>
             <?php endforeach; ?>
+
+            <?php if ($this->hasActions()) :  ?>
+                <th>Действия</th>
+            <?php endif; ?>
         </tr>
     </thead>
 
@@ -26,12 +32,23 @@ use flex\components\interfaces\IElement;
         <tr class="<?= $item->getElementType(); ?>">
             <?php foreach ($columns as $column) :
                 $call = $column;
-                if ($column instanceof \flex\components\ActiveColumn) {
+                if ($column instanceof \flex\components\elements\ActiveColumn) {
                     $call = $column->getCall();
                 }
                 ?>
                 <td><?= $item->$call; ?></td>
             <?php endforeach; ?>
+
+            <?php if ($this->hasActions()) :  ?>
+                <td>
+                    <?php
+                    /* @var $action Action */
+                    foreach ($this->getActions() as $action) : ?>
+                        <a href="<?= $action->getUrl(); ?>"><img src="<?= $action->getImage(); ?>"></a>
+                    <?php endforeach; ?>
+                </td>
+            <?php endif; ?>
+
         </tr>
     <?php endforeach; ?>
 

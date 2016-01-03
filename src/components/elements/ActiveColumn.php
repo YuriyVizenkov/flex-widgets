@@ -1,6 +1,8 @@
 <?php
 
-namespace flex\components;
+namespace flex\components\elements;
+
+use flex\components\SetPropertiesBehavior;
 
 /**
  * Class ActiveColumn
@@ -8,6 +10,8 @@ namespace flex\components;
  */
 class ActiveColumn
 {
+    use SetPropertiesBehavior;
+
     /**
      * @var string
      */
@@ -20,11 +24,7 @@ class ActiveColumn
 
     public function __construct(array $properties)
     {
-        foreach ($properties as $prop => $value) {
-            if (property_exists($this, $prop)) {
-                $this->$prop = $value;
-            }
-        }
+        $this->setProperties($properties);
     }
 
     /**
