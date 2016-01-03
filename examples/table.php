@@ -6,53 +6,54 @@
  * @package examples
  */
 
+use flex\components\ActiveColumn;
 use flex\components\enums\TypeElementEnum;
 use flex\widgets\TableWidget;
 
 require_once(__DIR__.'/bootstrap.php');
 
 $one = new \flex\components\Item();
-$one->Row = 1;
-$one->Bill = 'Credit Card';
-$one->PaymentDate = '04/07/2014';
-$one->PaymentStatus = 'Call in to confirm';
+$one->row = 1;
+$one->bill = 'Credit Card';
+$one->payment_date = '04/07/2014';
+$one->payment_status = 'Call in to confirm';
 $one->type = TypeElementEnum::ACTIVE;
 
 $two = new \flex\components\Item();
-$two->Row = 2;
-$two->Bill = 'Water';
-$two->PaymentDate = '01/07/2014';
-$two->PaymentStatus = 'Paid';
+$two->row = 2;
+$two->bill = 'Water';
+$two->payment_date = '01/07/2014';
+$two->payment_status = 'Paid';
 $two->type = TypeElementEnum::SUCCESS;
 
 $three = new \flex\components\Item();
-$three->Row = 3;
-$three->Bill = 'Internet';
-$three->PaymentDate = '05/07/2014';
-$three->PaymentStatus = 'Change plan';
+$three->row = 3;
+$three->bill = 'Internet';
+$three->payment_date = '05/07/2014';
+$three->payment_status = 'Change plan';
 $three->type = TypeElementEnum::INFO;
 
 $four = new \flex\components\Item();
-$four->Row = 4;
-$four->Bill = 'Electricity';
-$four->PaymentDate = '03/07/2014';
-$four->PaymentStatus = 'Pending';
+$four->row = 4;
+$four->bill = 'Electricity';
+$four->payment_date = '03/07/2014';
+$four->payment_status = 'Pending';
 $four->type = TypeElementEnum::WARNING;
 
 $five = new \flex\components\Item();
-$five->Row = 5;
-$five->Bill = 'Telephone';
-$five->PaymentDate = '06/07/2014';
-$five->PaymentStatus = 'Due';
+$five->row = 5;
+$five->bill = 'Telephone';
+$five->payment_date = '06/07/2014';
+$five->payment_status = 'Due';
 $five->type = TypeElementEnum::DANGER;
 
 $content = TableWidget::widget(
     [
         'columns' => [
-            'Row',
-            'Bill',
-            'PaymentDate',
-            'PaymentStatus'
+            new ActiveColumn(['title' => 'Row', 'call' => 'row']),
+            new ActiveColumn(['title' => 'Bill', 'call' => 'bill']),
+            new ActiveColumn(['title' => 'Payment Date', 'call' => 'payment_date']),
+            new ActiveColumn(['title' => 'Payment Status', 'call' => 'payment_status']),
         ],
         'list' => [$one, $two, $three, $four, $five]
     ]

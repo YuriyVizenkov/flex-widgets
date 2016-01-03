@@ -24,8 +24,13 @@ use flex\components\interfaces\IElement;
         }
         ?>
         <tr class="<?= $item->getElementType(); ?>">
-            <?php foreach ($columns as $column) : ?>
-                <td><?= $item->$column; ?></td>
+            <?php foreach ($columns as $column) :
+                $call = $column;
+                if ($column instanceof \flex\components\ActiveColumn) {
+                    $call = $column->getCall();
+                }
+                ?>
+                <td><?= $item->$call; ?></td>
             <?php endforeach; ?>
         </tr>
     <?php endforeach; ?>
