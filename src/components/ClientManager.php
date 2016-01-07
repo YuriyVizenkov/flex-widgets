@@ -100,6 +100,30 @@ class ClientManager implements IClientManager
     }
 
     /**
+     * @return string
+     */
+    public function getFlexAssetsImage()
+    {
+        return '/assets/images/';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFlexAssetsJs()
+    {
+        return '/assets/js/';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFlexAssetCss()
+    {
+        return '/assets/css/';
+    }
+
+    /**
      * @param string $file
      * @param array $params
      */

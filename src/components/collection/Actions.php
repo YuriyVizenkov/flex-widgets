@@ -4,6 +4,7 @@ namespace flex\components\collection;
 
 use flex\components\builders\ActionBuilder;
 use flex\components\elements\Action;
+use flex\components\interfaces\IAction;
 use flex\components\interfaces\IActions;
 
 class Actions implements IActions
@@ -14,30 +15,16 @@ class Actions implements IActions
     protected $actionsTypes = [];
 
     /**
-     * @var string
-     */
-    protected $baseUrl = '';
-
-    /**
-     * @var string
-     */
-    protected $imageUrl = '';
-
-    /**
      * @var Action[]
      */
     protected $actions = [];
 
     /**
      * @param array $types
-     * @param string $baseUrl
-     * @param string $imageUrl
      */
-    public function __construct(array $types = [], $baseUrl = '', $imageUrl = '')
+    public function __construct(array $types = [])
     {
         $this->actionsTypes = $types;
-        $this->baseUrl = $baseUrl;
-        $this->imageUrl = $imageUrl;
 
         $this->init();
     }
@@ -45,8 +32,12 @@ class Actions implements IActions
     protected function init()
     {
         $builderAction = new ActionBuilder();
-        foreach ($this->actionsTypes as $actionType) {
-            $this->actions[] = $builderAction->getAction($actionType, $this->baseUrl, $this->imageUrl);
+        foreach ($this->actionsTypes as $action) {
+            if ($action instanceof IAction) {
+                $this->actions[] = $action;
+            } else {
+                $this->actions[] = $builderAction->getAction($action);
+            }
         }
     }
 
@@ -63,6 +54,6 @@ class Actions implements IActions
      */
     public function count()
     {
-        return count($this->actionsTypes);
+        return count($this->actions);
     }
 }

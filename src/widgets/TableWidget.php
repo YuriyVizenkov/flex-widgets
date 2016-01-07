@@ -64,7 +64,6 @@ class TableWidget extends ActiveWidget
         return (isset($this->tableHtmlOptions['class'])) ? $this->tableHtmlOptions['class'] : '';
     }
 
-
     /**
      * @return string
      */

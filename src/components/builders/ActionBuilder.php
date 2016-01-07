@@ -3,6 +3,7 @@
 namespace flex\components\builders;
 
 use flex\components\elements\Action;
+use flex\components\FlexWidget;
 
 /**
  * Class ActionBuilder
@@ -12,18 +13,15 @@ class ActionBuilder
 {
     /**
      * @param string $type
-     * @param string $baseUrl
-     * @param string $imageUrl
      * @return Action
      */
-    public function getAction($type, $baseUrl, $imageUrl)
+    public function getAction($type)
     {
-
         return new Action(
             [
                 'type' => $type,
-                'url' => $this->getUrl($type, $baseUrl),
-                'image' => $this->getImage($type, $imageUrl),
+                'url' => $this->getActionUrl($type),
+                'image' => $this->getImageUrl($type),
                 'name' => $type
             ]
         );
@@ -31,21 +29,54 @@ class ActionBuilder
 
     /**
      * @param string $type
-     * @param string $baseUrl
      * @return string
      */
-    protected function getUrl($type, $baseUrl)
+    protected function getActionUrl($type)
     {
-        return $type;
+        return  $this->genActionUrl($type);
     }
 
     /**
      * @param string $type
-     * @param string $imageUrl
      * @return string
      */
-    protected function getImage($type, $imageUrl)
+    protected function getImageUrl($type)
     {
-        return ($imageUrl) ? $imageUrl . $type . '.png' : '/assets/images/' . $type . '.png';
+        return $this->getClientManager()->getFlexAssetsImage() . $type . '.png';
+    }
+
+    /**
+     * @return \flex\components\interfaces\IClientManager
+     */
+    protected function getClientManager()
+    {
+        return FlexWidget::$clientManager;
+    }
+
+    /**
+     * @param string $type
+     * @return string
+     */
+    protected function genActionUrl($type)
+    {
+        $url = $this->getFullUrl();
+
+        if (mb_strpos('?', $url) === false) {
+            $url .= '?';
+        } else {
+            $url .= '&';
+        }
+
+        $url .= 'action=' . $type;
+
+        return $url;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getFullUrl()
+    {
+        return 'http://'.$_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     }
 }

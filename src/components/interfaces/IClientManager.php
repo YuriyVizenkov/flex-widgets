@@ -24,4 +24,24 @@ interface IClientManager
      * @param array $params
      */
     public function registerCSS($file, $params = array());
+
+    /**
+     * @return string
+     */
+    public function getAppUrl();
+
+    /**
+     * @return string
+     */
+    public function getFlexAssetsImage();
+
+    /**
+     * @return string
+     */
+    public function getFlexAssetsJs();
+
+    /**
+     * @return string
+     */
+    public function getFlexAssetCss();
 }
