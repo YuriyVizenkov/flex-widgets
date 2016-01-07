@@ -1,6 +1,7 @@
 <?php
 
 namespace flex\components\interfaces;
+use flex\components\exceptions\NotImplementInterfaceException;
 
 /**
  * Interface IWidget
@@ -42,4 +43,23 @@ interface IWidget extends IRendering
      * @return string
      */
     public function getContent();
+
+    /**
+     * @param array $params
+     * @return string
+     * @throws NotImplementInterfaceException, NotDefinedPropertyException
+     */
+    public static function widget(array $params = []);
+
+    /**
+     * @param array $params
+     * @return IWidget
+     * @throws NotImplementInterfaceException, NotDefinedPropertyException
+     */
+    public static function beginWidget(array $params = []);
+
+    /**
+     * @return void
+     */
+    public function endWidget();
 }

@@ -162,6 +162,9 @@ abstract class FlexWidget implements IWidget
         return $widget;
     }
 
+    /**
+     * @return void
+     */
     public function endWidget()
     {
         if ($this->isShow()) {
