@@ -47,7 +47,7 @@ use flex\components\interfaces\IElement;
                     <?php
                     /* @var $action IAction */
                     foreach ($this->getActions() as $action) : ?>
-                        <a href="<?= $action->getUrl(); ?><?= $item->id ? '&id=' . $item->id : ''; ?>">
+                        <a href="<?= $action->getUrl(); ?><?= $item->id ? '&id=' . $item->id : ''; ?>" class="action_js" data-type="<?= $action->getType(); ?>">
                             <img src="<?= $action->getImage(); ?>">
                         </a>
                     <?php endforeach; ?>
