@@ -12,6 +12,16 @@ use flex\components\interfaces\IElement;
  */
 class FormWidget extends ActiveWidget
 {
+    /**
+     * @var string
+     */
+    public $action = '';
+
+    /**
+     * @var string
+     */
+    public $method = 'post';
+
     public function init()
     {
         parent::init();
@@ -19,7 +29,13 @@ class FormWidget extends ActiveWidget
 
     public function run()
     {
-        $this->render('form/main', []);
+        $this->render(
+            'form/main',
+            [
+                'action' => $this->action,
+                'method' => $this->method
+            ]
+        );
     }
 
     protected function runEnd()
