@@ -61,7 +61,7 @@ class ActionBuilder
     {
         $url = $this->getFullUrl();
 
-        if (mb_strpos('?', $url) === false) {
+        if (mb_strpos($url, '?') === false) {
             $url .= '?';
         } else {
             $url .= '&';
