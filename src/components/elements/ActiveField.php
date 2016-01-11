@@ -77,6 +77,14 @@ class ActiveField
     /**
      * @return string
      */
+    public function getNameAttribute()
+    {
+        return $this->el . '[' . $this->property . ']';
+    }
+
+    /**
+     * @return string
+     */
     public function getLabel()
     {
         return $this->label;

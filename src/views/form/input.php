@@ -9,5 +9,6 @@
            class="form-control"
            id="<?= $field->getId(); ?>"
            placeholder="<?= $field->getPlaceholder(); ?>"
-           value="<?= $field->getValue() ?>">
+           value="<?= $field->getValue() ?>"
+           name="<?= $field->getNameAttribute(); ?>">
 </div>

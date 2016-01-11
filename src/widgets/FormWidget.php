@@ -43,15 +43,29 @@ class FormWidget extends ActiveWidget
         $this->render('form/end', []);
     }
 
-    public function input(IElement $el, $property, $label, array $htmlOptions = [])
+    /**
+     * @param IElement $el
+     * @param string $property
+     * @param string $label
+     * @param array $htmlOptions
+     * @return string|void
+     */
+    public function input(IElement $el, $property, $label = '', array $htmlOptions = [])
     {
         $field = new ActiveField($el, $property, $label, ActiveField::TEXT_TYPE, $htmlOptions);
-        $this->render('form/input', ['field' => $field]);
+       return $this->render('form/input', ['field' => $field], true);
     }
 
-    public function email(IElement $el, $property, $label, array $htmlOptions = [])
+    /**
+     * @param IElement $el
+     * @param string $property
+     * @param string $label
+     * @param array $htmlOptions
+     * @return string|void
+     */
+    public function email(IElement $el, $property, $label = '', array $htmlOptions = [])
     {
         $field = new ActiveField($el, $property, $label, ActiveField::EMAIL_TYPE, $htmlOptions);
-        $this->render('form/input', ['field' => $field]);
+        return $this->render('form/input', ['field' => $field], true);
     }
 }
