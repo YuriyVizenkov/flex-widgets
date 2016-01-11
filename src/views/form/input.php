@@ -10,5 +10,5 @@
            id="<?= $field->getId(); ?>"
            placeholder="<?= $field->getPlaceholder(); ?>"
            value="<?= $field->getValue() ?>"
-           name="<?= $field->getNameAttribute(); ?>">
+           name="<?= $field->getNameAttribute(); ?>" <?= $field->getHtmlOptionsAsString(); ?>>
 </div>

@@ -111,4 +111,18 @@ class ActiveField
     {
         return (isset($this->htmlOptions['placeholder'])) ? $this->htmlOptions['placeholder'] : '';
     }
+
+    /**
+     * @return string
+     */
+    public function getHtmlOptionsAsString()
+    {
+        $out = '';
+        foreach ($this->htmlOptions as $option => $value) {
+            if ($option !== 'class' && $option !== 'name') {
+                $out .= $option . '="' . $value . '"';
+            }
+        }
+        return $out;
+    }
 }
