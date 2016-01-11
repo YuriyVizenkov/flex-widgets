@@ -79,7 +79,13 @@ class ActiveField
      */
     public function getNameAttribute()
     {
-        return $this->el . '[' . $this->property . ']';
+        return ($this->hasNameAttributeInHtmlOptions())
+            ? $this->htmlOptions['name'] : $this->el . '[' . $this->property . ']';
+    }
+
+    public function hasNameAttributeInHtmlOptions()
+    {
+        return isset($this->htmlOptions['name']);
     }
 
     /**
