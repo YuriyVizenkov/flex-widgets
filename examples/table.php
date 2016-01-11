@@ -71,7 +71,7 @@ $content = TableWidget::widget(
         'tableHtmlOptions' => [
             'class' => 'table_class',
         ],
-        'actions' => new Actions([Action::DELETE, Action::EDIT, Action::VIEW])
+        'actions' => new Actions([Action::DELETE, Action::UPDATE, Action::VIEW])
     ]
 );
 

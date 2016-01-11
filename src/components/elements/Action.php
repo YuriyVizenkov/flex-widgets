@@ -14,7 +14,7 @@ class Action implements IAction
     use SetPropertiesBehavior;
 
     const VIEW = 'view';
-    const EDIT = 'edit';
+    const UPDATE = 'update';
     const DELETE = 'delete';
 
     /**
