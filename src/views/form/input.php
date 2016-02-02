@@ -6,7 +6,7 @@
 <div class="form-group">
     <label for="<?= $field->getId(); ?>"><?= $field->getLabel(); ?></label>
     <input type="<?= $field->getType() ?>"
-           class="form-control"
+           class="form-control <?= $field->getClassAsString(); ?>"
            id="<?= $field->getId(); ?>"
            placeholder="<?= $field->getPlaceholder(); ?>"
            value="<?= $field->getValue() ?>"

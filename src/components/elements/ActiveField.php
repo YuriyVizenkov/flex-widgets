@@ -125,4 +125,12 @@ class ActiveField
         }
         return $out;
     }
+
+    /**
+     * @return string
+     */
+    public function getClassAsString()
+    {
+        return (isset($this->htmlOptions['class'])) ? $this->htmlOptions['class'] : '';
+    }
 }
